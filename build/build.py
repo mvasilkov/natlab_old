@@ -14,15 +14,12 @@ def get_engine():
     return Engine(dirs=[TEMPLATES_DIR.as_posix()])
 
 
-def render_to_file(template_string: str, context_dict: dict, out_file: Path):
+def render_to_string(template_string: str, context_dict: dict) -> str:
     template = get_engine().from_string(template_string)
-    result = template.render(Context(context_dict))
-
-    with open(out_file, 'w', encoding='utf-8', newline='\n') as out:
-        out.write(result)
+    return template.render(Context(context_dict))
 
 
-def natlib_lab_templates():
+def lab_templates():
     skip_folders = {
         '.git',
         'build',
@@ -36,14 +33,14 @@ def natlib_lab_templates():
             index_template = path / '_index.html'
             if not index_template.is_file():
                 continue
+
             print('*', path.name)
-            render_to_file(
-                index_template.read_text(encoding='utf-8'),
-                {},
-                path / 'index.html',
-            )
+
+            page = render_to_string(index_template.read_text(encoding='utf-8'), {})
+            with open(path / 'index.html', 'w', encoding='utf-8', newline='\n') as out:
+                out.write(page)
 
 
 if __name__ == '__main__':
     print('natlib-lab: templates')
-    natlib_lab_templates()
+    lab_templates()
