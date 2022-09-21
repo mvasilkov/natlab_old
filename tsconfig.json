@@ -1,0 +1,29 @@
+{
+  "compilerOptions": {
+    "target": "ES2017",
+    "module": "ES2020",
+    "outDir": ".",
+    "rootDir": ".",
+    "strict": true,
+    "noUnusedLocals": true,
+    "noUnusedParameters": true,
+    "noImplicitOverride": true,
+    "noImplicitReturns": true,
+    "noFallthroughCasesInSwitch": true,
+    "noUncheckedIndexedAccess": true,
+    "allowSyntheticDefaultImports": true,
+    "esModuleInterop": true,
+    "skipLibCheck": true,
+    "forceConsistentCasingInFileNames": true,
+    "newLine": "LF"
+  },
+  "include": [
+    "./**/*.ts"
+  ],
+  "exclude": [
+    "./build",
+    "./node_modules",
+    "./templates",
+    "./virtual"
+  ]
+}
