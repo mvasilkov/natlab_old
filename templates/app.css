@@ -4,3 +4,7 @@ html {
   background: #101010;
   font-family: -apple-system, 'Segoe UI', 'DejaVu Sans', system-ui, sans-serif;
 }
+
+canvas {
+  display: block;
+}
