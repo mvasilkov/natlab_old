@@ -8,6 +8,10 @@
   --canvas-width: 200px;
 }
 
+html {
+  background: #dbcfb1;
+}
+
 body {
   margin: var(--canvas-spacing);
 }

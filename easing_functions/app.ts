@@ -10,8 +10,13 @@ import { textCapsule } from '../node_modules/natlib/canvas/text.js'
 import { smootherstep, smoothstep } from '../node_modules/natlib/interpolation.js'
 
 const enum Settings {
-    padding = 4,
+    padding = 5,
     resolution = 200,
+    // Colors: https://lospec.com/palette-list/twilioquest-76
+    backgroundColor = '#dbcfb1',
+    lineColor = '#7b8382',
+    titleColor = '#7b8382',
+    functionColor = '#f22f46',
 }
 
 const identity = (x: number) => x
@@ -22,7 +27,7 @@ type EasingFunction = {
 }
 
 const easingFunctions: EasingFunction[] = [
-    { title: 'lerp', fn: identity },
+    { title: 'identity', fn: identity },
     { title: 'smoothstep', fn: smoothstep },
     { title: 'smootherstep', fn: smootherstep },
 ]
@@ -41,17 +46,17 @@ const size = width - Settings.padding - Settings.padding
 
 function paintEasingFunction({ title, fn }: EasingFunction) {
     const ch = new CanvasHandle(null, width, height, 2, con => {
-        con.fillStyle = '#000'
+        con.fillStyle = Settings.backgroundColor
         con.fillRect(0, 0, width, height)
 
         con.textAlign = 'center'
         con.textBaseline = 'middle'
         const path = textCapsule(con, titleLeft, titleTop, '300 16', title, 8, 12)
 
-        con.strokeStyle = '#8cff9b'
+        con.strokeStyle = Settings.titleColor
         con.stroke(path)
 
-        con.fillStyle = '#8cff9b'
+        con.fillStyle = Settings.titleColor
         con.fillText(title, titleLeft, titleTop)
 
         con.translate(0, width)
@@ -64,7 +69,7 @@ function paintEasingFunction({ title, fn }: EasingFunction) {
         con.moveTo(0, 0)
         con.lineTo(size, 0)
 
-        con.strokeStyle = '#ffe091'
+        con.strokeStyle = Settings.lineColor
         con.stroke()
 
         con.beginPath()
@@ -86,7 +91,7 @@ function paintEasingFunction({ title, fn }: EasingFunction) {
         con.lineTo(size, size)
 
         con.lineWidth = 2
-        con.strokeStyle = '#78fae6'
+        con.strokeStyle = Settings.functionColor
         con.stroke()
     })
 
