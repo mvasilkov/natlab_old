@@ -7,7 +7,7 @@
 
 import { CanvasHandle } from '../node_modules/natlib/canvas/CanvasHandle.js'
 import { textCapsule } from '../node_modules/natlib/canvas/text.js'
-import { smootherstep, smoothstep } from '../node_modules/natlib/interpolation.js'
+import { EasingFunction, smootherstep, smoothstep } from '../node_modules/natlib/interpolation.js'
 
 const enum Settings {
     padding = 5,
@@ -19,14 +19,14 @@ const enum Settings {
     functionColor = '#f22f46',
 }
 
-const identity = (x: number) => x
+const identity: EasingFunction = (x: number) => x
 
-type EasingFunction = {
+interface IEasingFunction {
     title: string,
-    fn: (x: number) => number,
+    fn: EasingFunction,
 }
 
-const easingFunctions: EasingFunction[] = [
+const easingFunctions: IEasingFunction[] = [
     { title: 'identity', fn: identity },
     { title: 'smoothstep', fn: smoothstep },
     { title: 'smootherstep', fn: smootherstep },
@@ -44,7 +44,7 @@ const titleLeft = 0.5 * width
 const titleTop = 0.5 * (height + width)
 const size = width - Settings.padding - Settings.padding
 
-function paintEasingFunction({ title, fn }: EasingFunction) {
+function paintEasingFunction({ title, fn }: IEasingFunction) {
     const ch = new CanvasHandle(null, width, height, 2, con => {
         con.fillStyle = Settings.backgroundColor
         con.fillRect(0, 0, width, height)
