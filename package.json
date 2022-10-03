@@ -2,6 +2,6 @@
   "author": "Mark Vasilkov (https://github.com/mvasilkov)",
   "license": "SEE LICENSE IN LICENSE",
   "dependencies": {
-    "natlib": "^0.1.3"
+    "natlib": "^0.1.4"
   }
 }

@@ -37,6 +37,9 @@ const easingFunctions: IEasingFunction[] = [
     { title: 'easeInCubic', fn: int.easeInCubic },
     { title: 'easeOutCubic', fn: int.easeOutCubic },
     { title: 'easeInOutCubic', fn: int.easeInOutCubic },
+    { title: 'easeInSine', fn: int.easeInSine },
+    { title: 'easeOutSine', fn: int.easeOutSine },
+    { title: 'easeInOutSine', fn: int.easeInOutSine },
 ]
 
 function getPropertyValue(property: string): number {
