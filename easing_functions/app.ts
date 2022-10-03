@@ -7,11 +7,12 @@
 
 import { CanvasHandle } from '../node_modules/natlib/canvas/CanvasHandle.js'
 import { textCapsule } from '../node_modules/natlib/canvas/text.js'
-import { EasingFunction, smootherstep, smoothstep } from '../node_modules/natlib/interpolation.js'
+import type { EasingFunction } from '../node_modules/natlib/interpolation'
+import * as int from '../node_modules/natlib/interpolation.js'
 
 const enum Settings {
     padding = 5,
-    resolution = 200,
+    resolution = 128,
     // Colors: https://lospec.com/palette-list/twilioquest-76
     backgroundColor = '#dbcfb1',
     lineColor = '#7b8382',
@@ -28,8 +29,14 @@ interface IEasingFunction {
 
 const easingFunctions: IEasingFunction[] = [
     { title: 'identity', fn: identity },
-    { title: 'smoothstep', fn: smoothstep },
-    { title: 'smootherstep', fn: smootherstep },
+    { title: 'smoothstep', fn: int.smoothstep },
+    { title: 'smootherstep', fn: int.smootherstep },
+    { title: 'easeInQuad', fn: int.easeInQuad },
+    { title: 'easeOutQuad', fn: int.easeOutQuad },
+    { title: 'easeInOutQuad', fn: int.easeInOutQuad },
+    { title: 'easeInCubic', fn: int.easeInCubic },
+    { title: 'easeOutCubic', fn: int.easeOutCubic },
+    { title: 'easeInOutCubic', fn: int.easeInOutCubic },
 ]
 
 function getPropertyValue(property: string): number {
