@@ -9,7 +9,7 @@
 }
 
 html {
-  background: #dbcfb1;
+  background: #f9e6cf;
 }
 
 body {
@@ -19,6 +19,16 @@ body {
 canvas {
   height: var(--canvas-height);
   width: var(--canvas-width);
+}
+
+h1 {
+  color: #5f5f6e;
+  font-size: 48px;
+  font-weight: 600;
+  letter-spacing: -1px;
+  line-height: 1.4;
+  margin: var(--canvas-spacing) 0;
+  text-align: center;
 }
 
 #content {

@@ -25,6 +25,7 @@ def lab_templates():
         'build',
         'node_modules',
         'templates',
+        'test',
         'virtual',
     }
 

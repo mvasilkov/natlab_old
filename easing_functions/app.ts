@@ -14,7 +14,7 @@ const enum Settings {
     padding = 5,
     resolution = 128,
     // Colors: https://lospec.com/palette-list/twilioquest-76
-    backgroundColor = '#dbcfb1',
+    backgroundColor = '#f9e6cf',
     lineColor = '#7b8382',
     titleColor = '#7b8382',
     functionColor = '#f22f46',
