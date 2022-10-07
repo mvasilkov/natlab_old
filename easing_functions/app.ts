@@ -53,6 +53,7 @@ const width = getPropertyValue('--canvas-width')
 const titleLeft = 0.5 * width
 const titleTop = 0.5 * (height + width)
 const size = width - Settings.padding - Settings.padding
+const fontWeight = devicePixelRatio < 2 ? 400 : 300
 
 function paintEasingFunction({ title, fn }: IEasingFunction) {
     const ch = new CanvasHandle(null, width, height, 2, con => {
@@ -61,7 +62,7 @@ function paintEasingFunction({ title, fn }: IEasingFunction) {
 
         con.textAlign = 'center'
         con.textBaseline = 'middle'
-        const path = textCapsule(con, titleLeft, titleTop, '300 16', title, 8, 12)
+        const path = textCapsule(con, titleLeft, titleTop, fontWeight + ' 16', title, 8, 12)
 
         con.strokeStyle = Settings.titleColor
         con.stroke(path)
