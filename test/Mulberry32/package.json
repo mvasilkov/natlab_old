@@ -1,5 +1,8 @@
 {
   "dependencies": {
     "nan": "^2.16.0"
+  },
+  "scripts": {
+    "install": "node-gyp rebuild"
   }
 }

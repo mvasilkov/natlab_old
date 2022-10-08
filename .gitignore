@@ -4,3 +4,5 @@ virtual/
 *.js
 *.html
 !templates/*.html
+.vscode/
+test/Mulberry32/build/
