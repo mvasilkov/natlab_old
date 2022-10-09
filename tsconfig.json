@@ -23,7 +23,7 @@
   "exclude": [
     "./build",
     "./node_modules",
-    "./templates",
+    "./shared",
     "./test",
     "./virtual"
   ]

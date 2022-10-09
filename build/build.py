@@ -6,7 +6,7 @@ from pathlib import Path
 from django.template import Context, Engine
 
 OUR_ROOT = Path(__file__).parents[1].resolve()
-TEMPLATES_DIR = OUR_ROOT / 'templates'
+TEMPLATES_DIR = OUR_ROOT / 'build' / 'templates'
 
 
 @cache
@@ -24,7 +24,7 @@ def lab_templates():
         '.git',
         'build',
         'node_modules',
-        'templates',
+        'shared',
         'test',
         'virtual',
     }
@@ -43,5 +43,5 @@ def lab_templates():
 
 
 if __name__ == '__main__':
-    print('natlib-lab: templates')
+    print('natlab: templates')
     lab_templates()
