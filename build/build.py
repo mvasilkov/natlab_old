@@ -19,7 +19,7 @@ def render_to_string(template_string: str, context_dict: dict) -> str:
     return template.render(Context(context_dict))
 
 
-def lab_templates():
+def natlab_templates():
     skip_folders = {
         '.git',
         'build',
@@ -44,4 +44,4 @@ def lab_templates():
 
 if __name__ == '__main__':
     print('natlab: templates')
-    lab_templates()
+    natlab_templates()
