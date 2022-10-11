@@ -8,7 +8,7 @@
 import { keyboardEventCodes } from './keyboardEventCodes.js'
 
 function hash(a) {
-    return a[0] + a[3] + a[5]
+    return (a[0] ?? '') + (a[3] ?? '') + (a[5] ?? '')
 }
 
 const table = Object.create(null)
@@ -20,6 +20,8 @@ keyboardEventCodes.forEach(code => {
     }
     else table[ch].push(code)
 })
+
+console.log('Collisions:')
 
 for (const ch in table) {
     const codes = table[ch]
