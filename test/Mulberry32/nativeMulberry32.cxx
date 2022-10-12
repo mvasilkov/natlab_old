@@ -30,12 +30,12 @@ void GetUint32(const Nan::FunctionCallbackInfo<v8::Value> &args)
 
 void Init(v8::Local<v8::Object> exports)
 {
-    v8::Local<v8::Context> context = exports->CreationContext();
+    v8::Local<v8::Context> context = exports->GetCreationContext().ToLocalChecked();
 
     exports->Set(context, Nan::New("setState").ToLocalChecked(),
-                 Nan::New<v8::FunctionTemplate>(SetState)->GetFunction(context).ToLocalChecked());
+                 Nan::New<v8::FunctionTemplate>(SetState)->GetFunction(context).ToLocalChecked()).Check();
     exports->Set(context, Nan::New("getUint32").ToLocalChecked(),
-                 Nan::New<v8::FunctionTemplate>(GetUint32)->GetFunction(context).ToLocalChecked());
+                 Nan::New<v8::FunctionTemplate>(GetUint32)->GetFunction(context).ToLocalChecked()).Check();
 }
 
 NODE_MODULE(nativeMulberry32, Init)
