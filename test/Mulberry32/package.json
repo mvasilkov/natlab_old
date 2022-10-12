@@ -1,4 +1,5 @@
 {
+  "type": "module",
   "dependencies": {
     "nan": "^2.16.0"
   },

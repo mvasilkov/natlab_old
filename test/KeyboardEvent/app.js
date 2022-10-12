@@ -7,8 +7,8 @@
 
 import { keyboardEventCodes } from './keyboardEventCodes.js'
 
-function hash(a) {
-    return (a[0] ?? '') + (a[3] ?? '') + (a[5] ?? '')
+function hash(code) {
+    return (code[0] ?? '') + (code[3] ?? '') + (code[5] ?? '')
 }
 
 const table = Object.create(null)
