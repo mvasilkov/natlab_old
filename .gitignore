@@ -1,7 +1,11 @@
-node_modules/
-yarn.lock
-virtual/
-*.js
-*.html
-!templates/*.html
+__pycache__/
 .vscode/
+node_modules/
+virtual/
+
+*.js
+!test/**/*.js
+
+*.html
+!_*.html
+!build/templates/**/*.html
