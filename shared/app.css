@@ -10,10 +10,24 @@ canvas {
 
 /* Shared visual styles */
 
-.title {
-  font-size: 48px;
+body {
+  line-height: 1.6;
+  margin: 1vw;
+}
+
+.title,
+.subtitle {
   font-weight: 600;
   letter-spacing: -1px;
   line-height: 1.4;
-  text-align: center;
+  margin: 20px 0;
+}
+
+.title {
+  font-size: 48px;
+}
+
+.subtitle {
+  font-size: 40px;
+  margin-top: 40px;
 }
