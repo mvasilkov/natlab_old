@@ -8,6 +8,8 @@ canvas {
   display: block;
 }
 
+/* Shared visual styles */
+
 .title {
   font-size: 48px;
   font-weight: 600;
