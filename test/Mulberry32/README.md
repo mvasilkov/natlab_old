@@ -1,4 +1,4 @@
-# Mulberry32 test
+# Mulberry32 and SplitMix32 test
 
-Make sure that the TypeScript version of the Mulberry32 PRNG
-behaves identically to the reference implementation.
+Make sure that the TypeScript versions of Mulberry32 and SplitMix32
+behave identically to the reference implementations.
