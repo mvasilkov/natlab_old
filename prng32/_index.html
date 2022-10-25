@@ -5,6 +5,12 @@
 {% block content %}
 <h1 class="title">32-bit PRNGs</h1>
 
+{% for prng in prngs %}
+<input id="{{ prng }}" type="radio" name="prng" value="{{ prng }}" {% if forloop.first %}checked{% endif %}>
+<label for="{{ prng }}">{{ prng }}</label>
+<br>
+{% endfor %}
+
 <h2 class="subtitle">Noise</h2>
 <canvas id="noise"></canvas>
 

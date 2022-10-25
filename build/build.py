@@ -37,7 +37,12 @@ def natlab_templates():
 
             print('*', path.name)
 
-            page = render_to_string(index_template.read_text(encoding='utf-8'), {})
+            page = render_to_string(
+                index_template.read_text(encoding='utf-8'),
+                {
+                    'prngs': ['Mulberry32', 'SplitMix32'],
+                },
+            )
             with open(path / 'index.html', 'w', encoding='utf-8', newline='\n') as out:
                 out.write(page)
 
