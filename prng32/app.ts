@@ -61,3 +61,13 @@ export function noiseAndDist(prngId: PrngId, seed: uint32_t,
         }
     }
 }
+
+const seedInput: HTMLInputElement = document.querySelector('#seed')!
+const startButton: HTMLButtonElement = document.querySelector('#start')!
+
+startButton.addEventListener('click', function () {
+    const prng = document.querySelector<HTMLInputElement>('input[name="prng"]:checked')!.value
+    const seed = +seedInput.value
+
+    noiseAndDist(<PrngId>prng, seed, noiseCanvas, distCanvas)
+})
