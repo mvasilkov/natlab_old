@@ -60,6 +60,19 @@ export function noiseAndDist(prngId: PrngId, seed: uint32_t,
             noiseCanvas.con.fillRect(x, y, 1, 1)
         }
     }
+
+    // More points for distribution
+    for (let n = 0; n < noiseCanvas.height * noiseCanvas.width; ++n) {
+        bytes.next()
+    }
+
+    distCanvas.con.clearRect(0, 0, distCanvas.width, distCanvas.height)
+
+    distCanvas.con.fillStyle = '#fff'
+
+    for (let x = 0; x < distCanvas.width; ++x) {
+        distCanvas.con.fillRect(x, distCanvas.height - d[x], 1, d[x])
+    }
 }
 
 const seedInput: HTMLInputElement = document.querySelector('#seed')!
