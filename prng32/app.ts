@@ -8,6 +8,7 @@
 import { CanvasHandle } from '../node_modules/natlib/canvas/CanvasHandle.js'
 import type { uint32_t } from '../node_modules/natlib/prelude.js'
 import { Mulberry32 } from '../node_modules/natlib/prng/Mulberry32.js'
+import { shuffle } from '../node_modules/natlib/prng/prng.js'
 import { SplitMix32 } from '../node_modules/natlib/prng/SplitMix32.js'
 
 const prngClassMap = {
@@ -28,6 +29,7 @@ const width = getPropertyValue('--canvas-width')
 
 const noiseCanvas = new CanvasHandle(document.querySelector('#noise'), width, height)
 const distCanvas = new CanvasHandle(document.querySelector('#dist'), width, height)
+const shuffleCanvas = new CanvasHandle(document.querySelector('#shuffle'), width, height)
 
 export function noiseAndDist(prngId: PrngId, seed: uint32_t,
     noiseCanvas: CanvasHandle, distCanvas: CanvasHandle) {
@@ -75,6 +77,45 @@ export function noiseAndDist(prngId: PrngId, seed: uint32_t,
     }
 }
 
+export function fisherYates(prngId: PrngId, seed: uint32_t,
+    shuffleCanvas: CanvasHandle) {
+
+    const indices: { [p: string]: number } = Object.create(null)
+
+    function p(arr: number[], cur: number[]) {
+        if (arr.length === 0) {
+            indices['' + cur] = Object.keys(indices).length
+            return
+        }
+        arr.forEach((value, index) => {
+            const before = arr.slice(0, index)
+            const after = arr.slice(index + 1)
+            p(before.concat(after), cur.concat([value]))
+        })
+    }
+
+    p([1, 2, 3, 4], [])
+
+    const pcount = Object.keys(indices).length
+    const results = Array<number>(pcount).fill(0)
+    const r = new prngClassMap[prngId](seed)
+    const width = shuffleCanvas.width / pcount
+    const padding = 1 / (pcount - 1)
+
+    for (let n = 0; n < 0.5 * shuffleCanvas.height * pcount; ++n) {
+        ++results[indices['' + shuffle(r, [1, 2, 3, 4])]!]
+    }
+
+    shuffleCanvas.con.clearRect(0, 0, shuffleCanvas.width, shuffleCanvas.height)
+
+    shuffleCanvas.con.fillStyle = '#fff'
+
+    for (let n = 0; n < pcount; ++n) {
+        shuffleCanvas.con.fillRect(n * (width + padding),
+            shuffleCanvas.height - results[n]!, width - 1, results[n]!)
+    }
+}
+
 const seedInput: HTMLInputElement = document.querySelector('#seed')!
 const startButton: HTMLButtonElement = document.querySelector('#start')!
 
@@ -83,4 +124,8 @@ startButton.addEventListener('click', function () {
     const seed = +seedInput.value
 
     noiseAndDist(<PrngId>prng, seed, noiseCanvas, distCanvas)
+    // Instead of `setImmediate()`
+    requestAnimationFrame(function () {
+        fisherYates(<PrngId>prng, seed, shuffleCanvas)
+    })
 })
