@@ -94,16 +94,20 @@ export function fisherYates(prngId: PrngId, seed: uint32_t,
         })
     }
 
-    p([1, 2, 3, 4], [])
+    function range(n: number): number[] {
+        return Array.from(Array(n).keys())
+    }
+
+    p(range(5), [])
 
     const pcount = Object.keys(indices).length
     const results = Array<number>(pcount).fill(0)
     const r = new prngClassMap[prngId](seed)
-    const width = shuffleCanvas.width / pcount
-    const padding = 1 / (pcount - 1)
+    const width = (shuffleCanvas.width / pcount) >>> 0
+    const padding = (shuffleCanvas.width % pcount) >>> 1
 
     for (let n = 0; n < 0.5 * shuffleCanvas.height * pcount; ++n) {
-        ++results[indices['' + shuffle(r, [1, 2, 3, 4])]!]
+        ++results[indices['' + shuffle(r, range(5))]!]
     }
 
     shuffleCanvas.con.clearRect(0, 0, shuffleCanvas.width, shuffleCanvas.height)
@@ -111,7 +115,7 @@ export function fisherYates(prngId: PrngId, seed: uint32_t,
     shuffleCanvas.con.fillStyle = '#fff'
 
     for (let n = 0; n < pcount; ++n) {
-        shuffleCanvas.con.fillRect(n * (width + padding),
+        shuffleCanvas.con.fillRect(n * width + padding,
             shuffleCanvas.height - results[n]!, width - 1, results[n]!)
     }
 }
