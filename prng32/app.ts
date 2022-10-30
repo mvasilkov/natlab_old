@@ -112,6 +112,12 @@ export function fisherYates(prngId: PrngId, seed: uint32_t,
 
     shuffleCanvas.con.clearRect(0, 0, shuffleCanvas.width, shuffleCanvas.height)
 
+    // Padding
+    shuffleCanvas.con.fillStyle = '#808080'
+
+    shuffleCanvas.con.fillRect(0, 0, padding - 1, shuffleCanvas.height)
+    shuffleCanvas.con.fillRect(shuffleCanvas.width, 0, -padding, shuffleCanvas.height)
+
     shuffleCanvas.con.fillStyle = '#fff'
 
     for (let n = 0; n < pcount; ++n) {
