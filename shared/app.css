@@ -17,19 +17,26 @@ body {
   margin: 1vw;
 }
 
+p {
+  margin: 20px 0;
+}
+
 .title,
 .subtitle {
   font-weight: 600;
   letter-spacing: -1px;
   line-height: 1.4;
-  margin: 20px 0;
+  margin: 40px 0 20px 0;
 }
 
 .title {
   font-size: 48px;
 }
 
+.title:first-child {
+  margin-top: 0;
+}
+
 .subtitle {
   font-size: 40px;
-  margin-top: 40px;
 }
