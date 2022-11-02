@@ -7,7 +7,7 @@
 
 import { CanvasHandle } from '../node_modules/natlib/canvas/CanvasHandle.js'
 import { Input, Keyboard } from '../node_modules/natlib/controls/Keyboard.js'
-import { dda } from '../node_modules/natlib/dda.js'
+import { dda, DdaIntersection } from '../node_modules/natlib/dda.js'
 import { startMainloop } from '../node_modules/natlib/scheduling/mainloop.js'
 import { Vec2 } from '../node_modules/natlib/Vec2.js'
 
@@ -24,6 +24,30 @@ const tiles = Array.from({ length: Settings.height },
 const startPoint = new Vec2(0.5, 0.5)
 const endPoint = new Vec2(Settings.width - 0.5, Settings.height - 0.5)
 const direction = new Vec2
+
+function updateTiles(): DdaIntersection {
+    for (let y = 0; y < Settings.height; ++y) {
+        for (let x = 0; x < Settings.width; ++x) {
+            tiles[y]![x] = false
+        }
+    }
+
+    direction.copy(endPoint).subtract(startPoint)
+
+    // DDA
+    // @ts-expect-error Not all code paths return a value.
+    return dda(startPoint, direction, function (x, y) {
+        if (x < 0 || x >= Settings.width || y < 0 || y >= Settings.height) {
+            return true // Out of bounds, stop
+        }
+        tiles[y]![x] = true
+        if (x === Math.floor(endPoint.x) && y === Math.floor(endPoint.y)) {
+            return true // Got to the end, stop
+        }
+    })
+}
+
+let intersection = updateTiles()
 
 const canvas = new CanvasHandle(document.querySelector('#canvas'),
     Settings.width * Settings.tileSize, Settings.height * Settings.tileSize)
@@ -59,32 +83,15 @@ function update() {
     if (keyboard.state[Input.DOWN]) {
         endPoint.y += Settings.speed
     }
+
+    // Update tiles
+    intersection = updateTiles()
 }
 
 function paint() {
     const { con } = canvas
 
     con.clearRect(0, 0, canvas.width, canvas.height)
-
-    for (let y = 0; y < Settings.height; ++y) {
-        for (let x = 0; x < Settings.width; ++x) {
-            tiles[y]![x] = false
-        }
-    }
-
-    direction.copy(endPoint).subtract(startPoint)
-
-    // DDA
-    // @ts-expect-error Not all code paths return a value.
-    const result = dda(startPoint, direction, function (x, y) {
-        if (x < 0 || x >= Settings.width || y < 0 || y >= Settings.height) {
-            return true // Out of bounds, stop
-        }
-        tiles[y]![x] = true
-        if (x === Math.floor(endPoint.x) && y === Math.floor(endPoint.y)) {
-            return true // Got to the end, stop
-        }
-    })
 
     // Tiles
     for (let y = 0; y < Settings.height; ++y) {
@@ -117,8 +124,8 @@ function paint() {
 
     // Tile intersection
     con.beginPath()
-    con.arc(result.x * Settings.tileSize, result.y * Settings.tileSize, 4, 0, 2 * Math.PI)
-    if (result.hitVertical) {
+    con.arc(intersection.x * Settings.tileSize, intersection.y * Settings.tileSize, 4, 0, 2 * Math.PI)
+    if (intersection.hitVertical) {
         con.fillStyle = '#fc91ff'
         con.fill()
     }
