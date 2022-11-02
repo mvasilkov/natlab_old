@@ -94,13 +94,38 @@ function paint() {
         }
     }
 
+    const angle = Math.atan2(direction.y, direction.x)
+    const distance = Math.sqrt(startPoint.distanceSquared(endPoint))
+
+    // Dotted line
+    // Colors: https://lospec.com/palette-list/commodore-ted-plus-4-c16
+    con.fillStyle = '#fca0bf'
+
+    for (let n = 0; n < distance; n += Math.sqrt(0.125)) {
+        const x = startPoint.x + n * Math.cos(angle)
+        const y = startPoint.y + n * Math.sin(angle)
+        con.fillRect(x * Settings.tileSize - 1, y * Settings.tileSize - 1, 2, 2)
+    }
+
     // Start point
     con.fillStyle = '#82cfff'
-    con.fillRect(startPoint.x * Settings.tileSize - 5, startPoint.y * Settings.tileSize - 5, 10, 10)
+    con.fillRect(startPoint.x * Settings.tileSize - 4, startPoint.y * Settings.tileSize - 4, 8, 8)
 
     // End point
     con.fillStyle = '#fcaf72'
-    con.fillRect(endPoint.x * Settings.tileSize - 5, endPoint.y * Settings.tileSize - 5, 10, 10)
+    con.fillRect(endPoint.x * Settings.tileSize - 4, endPoint.y * Settings.tileSize - 4, 8, 8)
+
+    // Tile intersection
+    con.beginPath()
+    con.arc(result.x * Settings.tileSize, result.y * Settings.tileSize, 4, 0, 2 * Math.PI)
+    if (result.hitVertical) {
+        con.fillStyle = '#fc91ff'
+        con.fill()
+    }
+    else {
+        con.strokeStyle = '#fc91ff'
+        con.stroke()
+    }
 }
 
 startMainloop(update, paint)
