@@ -32,7 +32,7 @@ function updateTiles(): DdaIntersection {
         }
     }
 
-    direction.copy(endPoint).subtract(startPoint)
+    direction.copy(endPoint).subtract(startPoint).normalize()
 
     // DDA
     // @ts-expect-error Not all code paths return a value.
@@ -108,7 +108,8 @@ function paint() {
     // Colors: https://lospec.com/palette-list/commodore-ted-plus-4-c16
     con.fillStyle = '#fca0bf'
 
-    for (let n = 0; n < distance; n += Math.sqrt(0.125)) {
+    const step = Math.sqrt(0.125)
+    for (let n = intersection.hitDistance! % step; n < distance; n += step) {
         const x = startPoint.x + n * Math.cos(angle)
         const y = startPoint.y + n * Math.sin(angle)
         con.fillRect(x * Settings.tileSize - 1, y * Settings.tileSize - 1, 2, 2)
