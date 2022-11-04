@@ -16,10 +16,15 @@ const enum Settings {
     width = 10,
     tileSize = 32,
     speed = 0.05,
+    // Colors: https://lospec.com/palette-list/twilioquest-76
+    startColor = '#b3e363',
+    endColor = '#d59ff4',
+    lineColor = '#fb3b64',
+    intersectionColor = '#fb3b64',
 }
 
-const tiles = Array.from({ length: Settings.height },
-    () => Array.from({ length: Settings.width }, () => false))
+const tiles = Array.from({ length: <number>Settings.height },
+    () => Array.from({ length: <number>Settings.width }, () => false))
 
 const startPoint = new Vec2(0.5, 0.5)
 const endPoint = new Vec2(Settings.width - 0.5, Settings.height - 0.5)
@@ -105,8 +110,7 @@ function paint() {
     const distance = Math.sqrt(startPoint.distanceSquared(endPoint))
 
     // Dotted line
-    // Colors: https://lospec.com/palette-list/commodore-ted-plus-4-c16
-    con.fillStyle = '#fca0bf'
+    con.fillStyle = Settings.lineColor
 
     const step = Math.sqrt(0.125)
     for (let n = intersection.hitDistance! % step; n < distance; n += step) {
@@ -116,22 +120,22 @@ function paint() {
     }
 
     // Start point
-    con.fillStyle = '#82cfff'
+    con.fillStyle = Settings.startColor
     con.fillRect(startPoint.x * Settings.tileSize - 4, startPoint.y * Settings.tileSize - 4, 8, 8)
 
     // End point
-    con.fillStyle = '#fcaf72'
+    con.fillStyle = Settings.endColor
     con.fillRect(endPoint.x * Settings.tileSize - 4, endPoint.y * Settings.tileSize - 4, 8, 8)
 
     // Tile intersection
     con.beginPath()
     con.arc(intersection.x * Settings.tileSize, intersection.y * Settings.tileSize, 4, 0, 2 * Math.PI)
     if (intersection.hitVertical) {
-        con.fillStyle = '#fc91ff'
+        con.fillStyle = Settings.intersectionColor
         con.fill()
     }
     else {
-        con.strokeStyle = '#fc91ff'
+        con.strokeStyle = Settings.intersectionColor
         con.stroke()
     }
 }
