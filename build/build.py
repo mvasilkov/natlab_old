@@ -1,12 +1,34 @@
 #!/usr/bin/env python3
 
+from dataclasses import dataclass
 from functools import cache
 from pathlib import Path
+from typing import Generator, cast
 
+from bs4 import BeautifulSoup
+from bs4.element import NavigableString, Tag
 from django.template import Context, Engine
 
 OUR_ROOT = Path(__file__).parents[1].resolve()
 TEMPLATES_DIR = OUR_ROOT / 'build' / 'templates'
+
+
+@dataclass
+class PageProps:
+    title: str
+    path: Path
+
+
+def get_page_props(page_content: str) -> PageProps:
+    soup = BeautifulSoup(page_content, 'html5lib')
+    if soup.body is None:
+        raise RuntimeError('BeautifulSoup broke')
+
+    children = cast(
+        Generator[Tag, None, None],
+        (a for a in soup.body.children if type(a) is not NavigableString),
+    )
+    first_child = next(children)
 
 
 @cache
@@ -47,6 +69,13 @@ def natlab_templates():
                 out.write(page)
 
 
+def natlab_index():
+    pass
+
+
 if __name__ == '__main__':
     print('natlab: templates')
     natlab_templates()
+
+    print('natlab: index')
+    natlab_index()
