@@ -23,8 +23,8 @@ const enum Settings {
     intersectionColor = '#fb3b64',
 }
 
-const tiles = Array.from({ length: <number>Settings.height },
-    () => Array.from({ length: <number>Settings.width }, () => false))
+const tiles = Array.from({ length: <const>Settings.height },
+    () => Array.from({ length: <const>Settings.width }, () => false))
 
 const startPoint = new Vec2(0.5, 0.5)
 const endPoint = new Vec2(Settings.width - 0.5, Settings.height - 0.5)
