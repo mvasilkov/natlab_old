@@ -19,7 +19,7 @@ class PageProps:
     path: Path
 
 
-def get_page_props(page_content: str) -> PageProps:
+def get_page_props(page_content: str, page_path: Path) -> PageProps:
     soup = BeautifulSoup(page_content, 'html5lib')
     if soup.body is None:
         raise RuntimeError('BeautifulSoup broke')
@@ -29,6 +29,11 @@ def get_page_props(page_content: str) -> PageProps:
         (a for a in soup.body.children if type(a) is not NavigableString),
     )
     first_child = next(children)
+
+    if first_child.name == 'h1':
+        return PageProps(title=first_child.get_text(), path=page_path)
+
+    raise RuntimeError('Missing title')
 
 
 @cache
@@ -41,7 +46,7 @@ def render_to_string(template_string: str, context_dict: dict) -> str:
     return template.render(Context(context_dict))
 
 
-def natlab_templates():
+def natlab_templates() -> list[PageProps]:
     skip_folders = {
         '.git',
         'build',
@@ -50,6 +55,8 @@ def natlab_templates():
         'test',
         'virtual',
     }
+
+    results: list[PageProps] = []
 
     for path in OUR_ROOT.iterdir():
         if path.name not in skip_folders and path.is_dir():
@@ -65,17 +72,25 @@ def natlab_templates():
                     'prngs': ['Mulberry32', 'SplitMix32'],
                 },
             )
-            with open(path / 'index.html', 'w', encoding='utf-8', newline='\n') as out:
+            out_path = path / 'index.html'
+            with open(out_path, 'w', encoding='utf-8', newline='\n') as out:
                 out.write(page)
 
+            props = get_page_props(page, out_path)
+            print(f' {props.title!r}')
 
-def natlab_index():
+            results.append(props)
+
+    return results
+
+
+def natlab_index(pages: list[PageProps]):
     pass
 
 
 if __name__ == '__main__':
     print('natlab: templates')
-    natlab_templates()
+    pages = natlab_templates()
 
     print('natlab: index')
-    natlab_index()
+    natlab_index(pages)
