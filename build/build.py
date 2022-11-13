@@ -18,6 +18,9 @@ class PageProps:
     title: str
     path: Path
 
+    def relative_path(self) -> str:
+        return self.path.relative_to(OUR_ROOT).as_posix()
+
 
 def get_page_props(page_content: str, page_path: Path) -> PageProps:
     soup = BeautifulSoup(page_content, 'html5lib')
@@ -85,7 +88,16 @@ def natlab_templates() -> list[PageProps]:
 
 
 def natlab_index(pages: list[PageProps]):
-    pass
+    index_template = TEMPLATES_DIR / 'index.html'
+    page = render_to_string(
+        index_template.read_text(encoding='utf-8'),
+        {
+            'pages': pages,
+        },
+    )
+    out_path = OUR_ROOT / 'index.html'
+    with open(out_path, 'w', encoding='utf-8', newline='\n') as out:
+        out.write(page)
 
 
 if __name__ == '__main__':
