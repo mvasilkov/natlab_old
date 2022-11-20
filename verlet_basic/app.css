@@ -1,0 +1,13 @@
+@charset "utf-8";
+
+@import url('../shared/shared.css');
+
+:root {
+  --canvas-height: 540px;
+  --canvas-width: 960px;
+}
+
+canvas {
+  height: var(--canvas-height);
+  width: var(--canvas-width);
+}
