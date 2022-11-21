@@ -6,23 +6,15 @@
   --canvas-height: 240px;
   --canvas-spacing: 24px;
   --canvas-width: 200px;
-}
-
-html {
-  background: #f9e6cf;
+  --page-background: #f9e6cf;
+  --page-color: #5f5f6e;
 }
 
 body {
   margin: var(--canvas-spacing);
 }
 
-canvas {
-  height: var(--canvas-height);
-  width: var(--canvas-width);
-}
-
 .title {
-  color: #5f5f6e;
   margin: var(--canvas-spacing) 0;
   text-align: center;
 }

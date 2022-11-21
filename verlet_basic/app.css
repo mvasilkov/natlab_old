@@ -6,8 +6,3 @@
   --canvas-height: 540px;
   --canvas-width: 960px;
 }
-
-canvas {
-  height: var(--canvas-height);
-  width: var(--canvas-width);
-}

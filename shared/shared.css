@@ -1,5 +1,17 @@
 @charset "utf-8";
 
+:root {
+  --canvas-height: 540px;
+  --canvas-width: 960px;
+  --page-background: #fff;
+  --page-color: #000;
+}
+
+html {
+  background: var(--page-background);
+  color: var(--page-color);
+}
+
 html,
 button,
 input {
@@ -8,6 +20,8 @@ input {
 
 canvas {
   display: block;
+  height: var(--canvas-height);
+  width: var(--canvas-width);
 }
 
 /* Shared visual styles */
