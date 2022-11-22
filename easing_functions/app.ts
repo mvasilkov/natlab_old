@@ -9,6 +9,7 @@ import { CanvasHandle } from '../node_modules/natlib/canvas/CanvasHandle.js'
 import { textCapsule } from '../node_modules/natlib/canvas/text.js'
 import type { EasingFunction } from '../node_modules/natlib/interpolation'
 import * as int from '../node_modules/natlib/interpolation.js'
+import { getPropertyValue } from '../shared/shared.js'
 
 const enum Settings {
     padding = 5,
@@ -41,12 +42,6 @@ const easingFunctions: IEasingFunction[] = [
     { title: 'easeOutSine', fn: int.easeOutSine },
     { title: 'easeInOutSine', fn: int.easeInOutSine },
 ]
-
-function getPropertyValue(property: string): number {
-    return +getComputedStyle(document.documentElement)
-        .getPropertyValue(property)
-        .replace(/px$/, '')
-}
 
 const height = getPropertyValue('--canvas-height')
 const width = getPropertyValue('--canvas-width')
