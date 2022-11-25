@@ -31,7 +31,7 @@ const noiseCanvas = new CanvasHandle(document.querySelector('#noise'), width, he
 const distCanvas = new CanvasHandle(document.querySelector('#dist'), width, height)
 const shuffleCanvas = new CanvasHandle(document.querySelector('#shuffle'), width, height)
 
-export function noiseAndDist(prngId: PrngId, seed: uint32_t,
+function noiseAndDist(prngId: PrngId, seed: uint32_t,
     noiseCanvas: CanvasHandle, distCanvas: CanvasHandle) {
 
     const r = new prngClassMap[prngId](seed)
@@ -77,7 +77,7 @@ export function noiseAndDist(prngId: PrngId, seed: uint32_t,
     }
 }
 
-export function fisherYates(prngId: PrngId, seed: uint32_t,
+function fisherYates(prngId: PrngId, seed: uint32_t,
     shuffleCanvas: CanvasHandle) {
 
     const indices: { [p: string]: number } = Object.create(null)

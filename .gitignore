@@ -9,3 +9,5 @@ virtual/
 *.html
 !_*.html
 !build/templates/**/*.html
+
+*.zip
