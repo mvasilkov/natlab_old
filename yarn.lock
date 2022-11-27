@@ -62,15 +62,15 @@ fsevents@~2.3.2:
   resolved "https://registry.yarnpkg.com/fsevents/-/fsevents-2.3.2.tgz#8a526f78b8fdf4623b709e0b975c52c24c02fd1a"
   integrity sha512-xiqMQR4xAeHTuB9uWm+fFRcIOgKBMiOBP+eXiyT7jsgVCq1bkVygt00oASowB7EdtpOHaaPgKt812P9ab+DDKA==
 
-natlib@^0.1.4:
-  version "0.1.4"
-  resolved "https://registry.yarnpkg.com/natlib/-/natlib-0.1.4.tgz#f2808f81305c12e6ed25a4fef5600e7bdc50cffa"
-  integrity sha512-tV8ELKKnEfadJwUQRQQUgfyPOPyiNdNa2YYDl5lH12xvJ8Ef0gwp67njfQOvzIO4Cyk3bZjC4TPVDQ3Eiuttmg==
+natlib@^0.1.6:
+  version "0.1.6"
+  resolved "https://registry.yarnpkg.com/natlib/-/natlib-0.1.6.tgz#9d7a4d3426ad5daca4eef637ce4efc0b1fe070a1"
+  integrity sha512-Uq5d6/8o/pjg7iz2GVL1Vp6azQem085aPm8h0z5t9Yt2sbm3gG11fnpbGX5AO2CcvtzesEd593yFVMhz5EVzmQ==
 
-rollup@^3.4.0:
-  version "3.4.0"
-  resolved "https://registry.yarnpkg.com/rollup/-/rollup-3.4.0.tgz#3f363d46474deb54e6da38d398c3af845c1b7d43"
-  integrity sha512-4g8ZrEFK7UbDvy3JF+d5bLiC8UKkS3n/27/cnVeESwB1LVPl6MoPL32/6+SCQ1vHTp6Mvp2veIHtwELhi+uXEw==
+rollup@^3.5.0:
+  version "3.5.0"
+  resolved "https://registry.yarnpkg.com/rollup/-/rollup-3.5.0.tgz#dfe5cba22c2c074691b4c25b9b8e9cfd90ac712b"
+  integrity sha512-TYu2L+TGhmNsXCtByont89u+ATQLcDy6A+++PwLXYunRtOm7XnaD+65s1pvewaOxMYR0eOkMXn9/i0saBxxpnQ==
   optionalDependencies:
     fsevents "~2.3.2"
 
