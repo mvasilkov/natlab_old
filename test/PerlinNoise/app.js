@@ -5,6 +5,7 @@
  */
 'use strict'
 
+import { strict as assert } from 'node:assert'
 import { spawn } from 'node:child_process'
 import { dirname, join } from 'node:path'
 import { fileURLToPath } from 'node:url'
@@ -29,6 +30,16 @@ function pythonPerlin(x, y, z) {
 const perlin = new PerlinNoise(p.concat(p))
 
 async function run() {
+    for (let n = 0; n < 100; ++n) {
+        const x = Math.random() * 200 - 100
+        const y = Math.random() * 200 - 100
+        const z = Math.random() * 200 - 100
+        console.log(x, y, z)
+
+        const a = perlin.noise3(x, y, z)
+        const b = await pythonPerlin(x, y, z)
+        assert.strictEqual(a, b)
+    }
 }
 
 run()

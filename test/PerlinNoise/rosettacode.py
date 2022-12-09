@@ -55,10 +55,9 @@ if __name__ == '__main__':
         print('Usage: {} X Y Z'.format(sys.argv[0]))
         sys.exit(1)
 
-    print(
-        perlin_noise(
-            float(sys.argv[1]),
-            float(sys.argv[2]),
-            float(sys.argv[3]),
-        )
+    result = perlin_noise(
+        float(sys.argv[1]),
+        float(sys.argv[2]),
+        float(sys.argv[3]),
     )
+    print(repr(result))
