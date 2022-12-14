@@ -3,11 +3,11 @@
   "author": "Mark Vasilkov (https://github.com/mvasilkov)",
   "license": "SEE LICENSE IN LICENSE",
   "dependencies": {
-    "natlib": "^0.1.6"
+    "natlib": "^0.1.7"
   },
   "devDependencies": {
-    "rollup": "^3.5.0",
-    "terser": "^5.16.0",
-    "typescript": "^4.9.3"
+    "rollup": "^3.7.3",
+    "terser": "^5.16.1",
+    "typescript": "^4.9.4"
   }
 }
