@@ -8,15 +8,17 @@
 import { strict as assert } from 'node:assert'
 import { spawn } from 'node:child_process'
 import { dirname, join } from 'node:path'
+import { platform } from 'node:process'
 import { fileURLToPath } from 'node:url'
 import { PerlinNoise } from 'natlib/noise/PerlinNoise.js'
 import p from './permutation.json' assert { type: 'json' }
 
+const python = platform === 'win32' ? 'python' : 'python3'
 const modulePath = fileURLToPath(import.meta.url)
 const __dirname = dirname(modulePath)
 
 function pythonPerlin(x, y, z) {
-    const p = spawn('python', [join(__dirname, 'rosettacode.py'), x, y, z])
+    const p = spawn(python, [join(__dirname, 'rosettacode.py'), x, y, z])
     return new Promise((resolve, reject) => {
         p.stdout.on('data', data => {
             resolve(parseFloat(data.toString('utf8')))
@@ -38,7 +40,7 @@ async function run() {
 
         const a = perlin.noise3(x, y, z)
         const b = await pythonPerlin(x, y, z)
-        assert.strictEqual(a, b)
+        assert(Math.abs(a - b) < Number.EPSILON, `natlib: ${a}, Python: ${b}`)
     }
 }
 
