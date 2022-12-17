@@ -6,12 +6,17 @@
 'use strict'
 
 import { CanvasHandle } from '../node_modules/natlib/canvas/CanvasHandle.js'
-import { Keyboard } from '../node_modules/natlib/controls/Keyboard.js'
+import { Input, Keyboard } from '../node_modules/natlib/controls/Keyboard.js'
 import { startMainloop } from '../node_modules/natlib/scheduling/mainloop.js'
 import { Polygon } from '../node_modules/natlib/verlet/objects/Polygon.js'
 import { SatScene } from '../node_modules/natlib/verlet/SatScene.js'
 import { WithPaintMethod } from '../node_modules/natlib/verlet/WithPaintMethod.js'
 import { getPropertyValue } from '../shared/shared.js'
+import { enterPhase, Phase, state } from './state.js'
+
+const enum Settings {
+    backgroundColor = '#000',
+}
 
 const height = getPropertyValue('--canvas-height')
 const width = getPropertyValue('--canvas-width')
@@ -28,11 +33,40 @@ const scene = new SatScene(width, height, 12)
 const player = new PaintPolygon(scene, 16, 0.5 * width, 0.5 * height, 48)
 
 function update() {
+    state.oldProgress = state.progress
+
+    let flap = keyboard.state[Input.SPACE] && !state.spacePressed
+    state.spacePressed = keyboard.state[Input.SPACE]
+
+    switch (state.phase) {
+        // @ts-expect-error Fallthrough case in switch
+        case Phase.INITIAL:
+            if (flap) {
+                enterPhase(Phase.FLAPPING)
+            }
+            else break
+
+        case Phase.FLAPPING:
+            enterPhase(Phase.DROPPING)
+            break
+
+        case Phase.DROPPING:
+            break
+
+        case Phase.FAILING:
+            break
+
+        case Phase.FAILED:
+    }
+
     scene.update()
 }
 
 function render(t: number) {
     const { con } = canvas
+
+    con.fillStyle = Settings.backgroundColor
+    con.fillRect(0, 0, width, height)
 
     player.paint(con, t)
 }
