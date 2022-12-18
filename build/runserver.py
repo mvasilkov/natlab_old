@@ -3,6 +3,7 @@
 import contextlib
 from functools import partial
 from http.server import SimpleHTTPRequestHandler, ThreadingHTTPServer
+from os.path import split, splitext
 from pathlib import Path
 import socket
 
@@ -39,7 +40,47 @@ def runserver(host='', port=8086):
             print('Done')
 
 
+def find_paths():
+    skip_folders = {
+        '.git',
+        '.vscode',
+        'build',
+        'node_modules',
+        'test',
+        'virtual',
+    }
+
+    paths = [
+        OUR_ROOT / 'node_modules' / 'natlib',
+        OUR_ROOT / 'build' / 'templates',
+    ]
+
+    for path in OUR_ROOT.iterdir():
+        if path.name not in skip_folders and path.is_dir():
+            paths.append(path)
+
+    print('Watching folders:', ', '.join(repr(p.name) for p in paths))
+    return paths
+
+
+def watch_files():
+    paths = find_paths()
+
+    for changes in watch(*paths):
+        run_build = run_tsc = False
+
+        for change in changes:
+            filename, extension = splitext(split(change[1])[1])
+            if extension == '.ts':
+                run_tsc = True
+            elif filename.startswith('_') and extension == '.html':
+                run_build = True
+
+        print(f'{run_tsc=}, {run_build=}')
+
+
 def main():
+    watch_files()
     runserver()
 
 
