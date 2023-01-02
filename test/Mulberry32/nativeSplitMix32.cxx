@@ -1,6 +1,6 @@
 /* This file is part of natlab.
  * https://github.com/mvasilkov/natlab
- * MIT+Ethics License | Copyright (c) 2022 Mark Vasilkov
+ * MIT+Ethics License | Copyright (c) 2022, 2023 Mark Vasilkov
  * See https://github.com/mvasilkov/natlab/blob/master/LICENSE
  */
 #include <nan.h>
