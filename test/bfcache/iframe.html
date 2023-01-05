@@ -1,0 +1,30 @@
+<title>Browsing context C</title>
+<link href="./styles.css" type="text/css" rel="stylesheet" />
+<p>Browsing context C</p>
+<div id="notification" class="marked-text"></div>
+<script src="script.js"></script>
+<script>
+  window.onload = function (e) {
+    if (document.referrer.includes("sidepage.html") && window.top === window) {
+      let status = sessionStorage.getItem("status");
+      if (!status || status === "never") {
+        notification.textContent = "There is no to await";
+      }
+      if (status === "pre-complete") {
+        notification.textContent =
+          "Await the message here, this field will have been changed";
+      }
+      if (status === "complete") {
+        notification.textContent = "You've late, timeout has already expired";
+      }
+    }
+  };
+  window.onmessage = function (e) {
+    if (document.referrer.includes("sidepage.html") && window.top === window) {
+      if (e.data.key === "notification") {
+        sessionStorage.setItem("status", "complete");
+        notification.textContent = e.data.value;
+      }
+    }
+  };
+</script>

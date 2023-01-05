@@ -1,0 +1,67 @@
+<title>Browsing context A</title>
+<link href="./styles.css" type="text/css" rel="stylesheet" />
+<p>Browsing context A</p>
+<button id="openButton">Open sidepage</button>
+<div style="margin-top: 1em;">
+  <span style="font-weight: bold;">Instruction:</span>
+  <ol style="margin: 0;">
+    <li>
+      Click on the button with text
+      <span class="marked-text">Open sidepage</span>
+    </li>
+    <li>
+      Click or not click on the button
+      <span class="marked-text">Go to iframe.html</span> within 3000ms
+    </li>
+    <li>
+      If you haven't commited click then await message
+      <span class="marked-text"
+        >setTimeout has been sheduled on the 'fully active' document</span
+      >, otherwise, await for the message
+      <span class="marked-text"
+        >timeout has expired check out the index.html page</span
+      >
+      on the page <span class="marked-file">iframe.html</span>
+    </li>
+    <li>
+      Check out log of console on the
+      <span class="marked-file">index.html</span> page
+    </li>
+  </ol>
+</div>
+<script src="script.js"></script>
+<script>
+  openButton.onclick = function (e) {
+    window.openedRef = window.open("sidepage.html");
+  };
+
+  window.onmessage = function (e) {
+    if (e.data === "complete") {
+      console.log("received data:", e.data);
+
+      let subframeRef = openedRef.frames[0];
+      /// timeout for making subframe not fully active
+      setTimeout(() => {
+        openedRef.postMessage(
+          {
+            key: "notification",
+            value: "timeout has expired check out the index.html page"
+          },
+          window.location.origin
+        );
+        let id = subframeRef.setTimeout(() => {
+          console.log("Done!");
+          openedRef.postMessage(
+            {
+              key: "expire",
+              value:
+                "setTimeout has been sheduled on the 'fully active' document"
+            },
+            window.location.origin
+          );
+        });
+        console.log("targetID: ", id);
+      }, 3000);
+    }
+  };
+</script>

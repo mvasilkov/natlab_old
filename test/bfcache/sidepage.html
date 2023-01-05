@@ -1,0 +1,41 @@
+<title>Browsing context B</title>
+<link href="./styles.css" type="text/css" rel="stylesheet" />
+<p>Browsing context B</p>
+<iframe src="iframe.html"></iframe>
+<div id="notification" class="marked-text"></div>
+<button id="goToButton" onclick="location.assign('iframe.html')">
+  Go to iframe.html
+</button>
+<script src="script.js"></script>
+<script>
+  window.onload = function (e) {
+    if (window.opener === null) {
+      notification.textContent = "opener is null";
+      return;
+    }
+    let status = sessionStorage.getItem("status");
+    if (status === "complete" || status === "never") {
+      if (status === "never") {
+        notification.textContent = "setTimeout won't have been invoked";
+      }
+      notification.textContent = "setTimeout won't have been invoked";
+      sessionStorage.setItem("status", "never");
+    }
+    if (!status) {
+      notification.textContent = "You have about 3000ms to go on the new URL";
+
+      let elem = window.frames[0].frameElement;
+      if (elem.contentDocument.readyState === "complete") {
+        console.log(elem.contentWindow, window.location.origin, e.persisted);
+        window.opener.postMessage("complete", window.location.origin);
+        sessionStorage.setItem("status", "pre-complete");
+      }
+    }
+  };
+  window.onmessage = function (e) {
+    if (e.data.key === "expire") {
+      notification.textContent = e.data.value;
+      sessionStorage.setItem("status", "complete");
+    }
+  };
+</script>
