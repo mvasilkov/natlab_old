@@ -1,0 +1,12 @@
+{
+  "type": "module",
+  "author": "Mark Vasilkov (https://github.com/mvasilkov)",
+  "license": "SEE LICENSE IN LICENSE",
+  "devDependencies": {
+    "jest": "^29.3.1"
+  },
+  "scripts": {
+    "test": "jest",
+    "test_modules": "yarn node --experimental-vm-modules $(yarn bin jest)"
+  }
+}
