@@ -50,6 +50,20 @@ describe('debounce', () => {
     expect(fn).toHaveBeenCalledTimes(1)
   })
 
+  it('should call the provided function only once if multiple calls are made within the wait time (2)', () => {
+    debouncedFn()
+    jest.advanceTimersByTime(wait - 1)
+    debouncedFn()
+    jest.advanceTimersByTime(wait - 1)
+    debouncedFn()
+
+    jest.advanceTimersByTime(wait)
+    expect(fn).toHaveBeenCalledTimes(1)
+
+    jest.advanceTimersByTime(wait)
+    expect(fn).toHaveBeenCalledTimes(1)
+  })
+
   it('should call the provided function with the initial arguments if multiple calls are made within the wait time', () => {
     debouncedFn('first call')
     debouncedFn('second call')
