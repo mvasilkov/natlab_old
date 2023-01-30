@@ -3,10 +3,10 @@
   "author": "Mark Vasilkov (https://github.com/mvasilkov)",
   "license": "SEE LICENSE IN LICENSE",
   "devDependencies": {
-    "jest": "^29.3.1"
+    "jest": "^29.4.1"
   },
   "scripts": {
     "test": "jest",
-    "test_modules": "yarn node --experimental-vm-modules $(yarn bin jest)"
+    "test_modules": "node --experimental-vm-modules node_modules/jest/bin/jest.js"
   }
 }
