@@ -5,26 +5,20 @@
  */
 'use strict'
 
+import { ExtendedBool, ShortBool } from '../node_modules/natlib/prelude.js'
+import type { IState } from '../node_modules/natlib/state'
+
 export const enum Phase {
-    INITIAL, FLAPPING, DROPPING, FAILING, FAILED
+    INITIAL = 1, FLAPPING, DROPPING, FAILING, FAILED
 }
 
-interface State {
-    phase: Phase,
-    /** Phase progress */
-    progress: number,
-    oldProgress: number,
-    spacePressed: boolean | undefined,
+interface State extends IState {
+    spacePressed: ExtendedBool,
 }
 
 export const state: State = {
     phase: Phase.INITIAL,
-    progress: 0,
-    oldProgress: 0,
-    spacePressed: false,
-}
-
-export function enterPhase(phase: Phase, initialProgress = 0) {
-    state.phase = phase
-    state.progress = state.oldProgress = initialProgress
+    phaseTtl: 0,
+    oldTtl: 0,
+    spacePressed: ShortBool.FALSE,
 }
