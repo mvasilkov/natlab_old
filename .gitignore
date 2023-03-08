@@ -1,13 +1,10 @@
 __pycache__/
-.vscode/
 node_modules/
 virtual/
+yarn.lock
 
-*.js
-!test/**/*.js
+pages/**/*.js
 
 *.html
 !_*.html
 !build/templates/**/*.html
-
-*.zip

@@ -11,6 +11,7 @@ from django.template import Context, Engine
 
 OUR_ROOT = Path(__file__).parents[1].resolve()
 TEMPLATES_DIR = OUR_ROOT / 'build' / 'templates'
+OUR_ROOT /= 'pages'
 
 
 @dataclass
@@ -51,12 +52,7 @@ def render_to_string(template_string: str, context_dict: dict) -> str:
 
 def natlab_templates() -> list[PageProps]:
     skip_folders = {
-        '.git',
-        'build',
-        'node_modules',
         'shared',
-        'test',
-        'virtual',
     }
 
     results: list[PageProps] = []

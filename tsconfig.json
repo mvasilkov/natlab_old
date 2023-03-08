@@ -18,12 +18,7 @@
     "newLine": "LF"
   },
   "include": [
-    "./**/*.ts"
+    "pages/**/*.ts"
   ],
-  "exclude": [
-    "./build",
-    "./node_modules",
-    "./test",
-    "./virtual"
-  ]
+  "exclude": []
 }
