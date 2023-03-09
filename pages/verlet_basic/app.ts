@@ -5,14 +5,14 @@
  */
 'use strict'
 
-import { CanvasHandle } from '../node_modules/natlib/canvas/CanvasHandle.js'
-import { Input, Keyboard } from '../node_modules/natlib/controls/Keyboard.js'
-import { Pointer } from '../node_modules/natlib/controls/Pointer.js'
-import { startMainloop } from '../node_modules/natlib/scheduling/mainloop.js'
-import { Polygon } from '../node_modules/natlib/verlet/objects/Polygon.js'
-import { SatScene } from '../node_modules/natlib/verlet/SatScene.js'
-import { WithPaintMethod } from '../node_modules/natlib/verlet/WithPaintMethod.js'
-import { WithPointerControls } from '../node_modules/natlib/verlet/WithPointerControls.js'
+import { CanvasHandle } from '../../node_modules/natlib/canvas/CanvasHandle.js'
+import { Input, Keyboard } from '../../node_modules/natlib/controls/Keyboard.js'
+import { Pointer } from '../../node_modules/natlib/controls/Pointer.js'
+import { startMainloop } from '../../node_modules/natlib/scheduling/mainloop.js'
+import { Polygon } from '../../node_modules/natlib/verlet/objects/Polygon.js'
+import { SatScene } from '../../node_modules/natlib/verlet/SatScene.js'
+import { WithPaintMethod } from '../../node_modules/natlib/verlet/WithPaintMethod.js'
+import { WithPointerControls } from '../../node_modules/natlib/verlet/WithPointerControls.js'
 import { getPropertyValue } from '../shared/shared.js'
 
 const enum Settings {

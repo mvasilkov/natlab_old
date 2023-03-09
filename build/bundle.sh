@@ -2,12 +2,12 @@
 set -eo pipefail
 
 # Clean
-git clean -fqx **/app.*
+git clean -fqx pages/**/app.*
 
 # Build
 node_modules/.bin/tsc || true
 
-for app in */
+for app in pages/*/
 do
     app="${app%/}"
     [ ! -f "$app/app.js" ] && continue
@@ -32,4 +32,7 @@ do
     echo "$app/app.opt.js $size_opt"
     echo "$app/app.zip (OS zip) $size_zip"
     echo "$app/app.zip (advzip) $size_advzip"
+
+    # Clean
+    rm "$app/app.bun.js" "$app/app.opt.js" "$app/app.zip"
 done

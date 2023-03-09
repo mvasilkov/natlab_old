@@ -5,10 +5,10 @@
  */
 'use strict'
 
-import { CanvasHandle } from '../node_modules/natlib/canvas/CanvasHandle.js'
-import { textCapsule } from '../node_modules/natlib/canvas/text.js'
-import type { EasingFunction } from '../node_modules/natlib/interpolation'
-import * as int from '../node_modules/natlib/interpolation.js'
+import { CanvasHandle } from '../../node_modules/natlib/canvas/CanvasHandle.js'
+import { textCapsule } from '../../node_modules/natlib/canvas/text.js'
+import type { EasingFunction } from '../../node_modules/natlib/interpolation'
+import * as int from '../../node_modules/natlib/interpolation.js'
 import { getPropertyValue } from '../shared/shared.js'
 
 const enum Settings {

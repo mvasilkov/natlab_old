@@ -5,11 +5,11 @@
  */
 'use strict'
 
-import { CanvasHandle } from '../node_modules/natlib/canvas/CanvasHandle.js'
-import type { uint32_t } from '../node_modules/natlib/prelude'
-import { Mulberry32 } from '../node_modules/natlib/prng/Mulberry32.js'
-import { shuffle } from '../node_modules/natlib/prng/prng.js'
-import { SplitMix32 } from '../node_modules/natlib/prng/SplitMix32.js'
+import { CanvasHandle } from '../../node_modules/natlib/canvas/CanvasHandle.js'
+import type { uint32_t } from '../../node_modules/natlib/prelude'
+import { Mulberry32 } from '../../node_modules/natlib/prng/Mulberry32.js'
+import { shuffle } from '../../node_modules/natlib/prng/prng.js'
+import { SplitMix32 } from '../../node_modules/natlib/prng/SplitMix32.js'
 
 const prngClassMap = {
     Mulberry32,

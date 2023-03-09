@@ -5,13 +5,13 @@
  */
 'use strict'
 
-import { CanvasHandle } from '../node_modules/natlib/canvas/CanvasHandle.js'
-import { Input, Keyboard } from '../node_modules/natlib/controls/Keyboard.js'
-import { startMainloop } from '../node_modules/natlib/scheduling/mainloop.js'
-import { enterPhase, updatePhase } from '../node_modules/natlib/state.js'
-import { Polygon } from '../node_modules/natlib/verlet/objects/Polygon.js'
-import { SatScene } from '../node_modules/natlib/verlet/SatScene.js'
-import { WithPaintMethod } from '../node_modules/natlib/verlet/WithPaintMethod.js'
+import { CanvasHandle } from '../../node_modules/natlib/canvas/CanvasHandle.js'
+import { Input, Keyboard } from '../../node_modules/natlib/controls/Keyboard.js'
+import { startMainloop } from '../../node_modules/natlib/scheduling/mainloop.js'
+import { enterPhase, updatePhase } from '../../node_modules/natlib/state.js'
+import { Polygon } from '../../node_modules/natlib/verlet/objects/Polygon.js'
+import { SatScene } from '../../node_modules/natlib/verlet/SatScene.js'
+import { WithPaintMethod } from '../../node_modules/natlib/verlet/WithPaintMethod.js'
 import { getPropertyValue } from '../shared/shared.js'
 import { Phase, state } from './state.js'
 

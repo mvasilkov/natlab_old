@@ -5,11 +5,11 @@
  */
 'use strict'
 
-import { CanvasHandle } from '../node_modules/natlib/canvas/CanvasHandle.js'
-import { Input, Keyboard } from '../node_modules/natlib/controls/Keyboard.js'
-import { dda, DdaIntersection } from '../node_modules/natlib/dda.js'
-import { startMainloop } from '../node_modules/natlib/scheduling/mainloop.js'
-import { Vec2 } from '../node_modules/natlib/Vec2.js'
+import { CanvasHandle } from '../../node_modules/natlib/canvas/CanvasHandle.js'
+import { Input, Keyboard } from '../../node_modules/natlib/controls/Keyboard.js'
+import { dda, DdaIntersection } from '../../node_modules/natlib/dda.js'
+import { startMainloop } from '../../node_modules/natlib/scheduling/mainloop.js'
+import { Vec2 } from '../../node_modules/natlib/Vec2.js'
 
 const enum Settings {
     height = 10,

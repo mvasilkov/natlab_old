@@ -5,8 +5,8 @@
  */
 'use strict'
 
-import { ExtendedBool, ShortBool } from '../node_modules/natlib/prelude.js'
-import type { IState } from '../node_modules/natlib/state'
+import { ExtendedBool, ShortBool } from '../../node_modules/natlib/prelude.js'
+import type { IState } from '../../node_modules/natlib/state'
 
 export const enum Phase {
     INITIAL = 1, FLAPPING, DROPPING, FAILING, FAILED
