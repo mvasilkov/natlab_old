@@ -6,7 +6,7 @@
 'use strict'
 
 import { jest } from '@jest/globals'
-import { permutations, slidingWindow } from '../../node_modules/natlib/itertools.js'
+import { permutations, slidingWindow } from 'natlib/itertools.js'
 
 test('Sliding window generator function', () => {
   const array = [1, 2, 3, 4, 5, 6, 7, 8, 9]

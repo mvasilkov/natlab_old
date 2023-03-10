@@ -6,7 +6,7 @@
         "nativeMulberry32.cxx"
       ],
       "include_dirs": [
-        "<!(node -e 'require(`nan`)')"
+        '<!(node -e "require(`nan`)")'
       ]
     },
     {
@@ -15,7 +15,7 @@
         "nativeSplitMix32.cxx"
       ],
       "include_dirs": [
-        "<!(node -e 'require(`nan`)')"
+        '<!(node -e "require(`nan`)")'
       ]
     }
   ]

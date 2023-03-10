@@ -7,8 +7,8 @@
 
 import { createRequire } from 'module'
 
-import { Mulberry32 } from '../../node_modules/natlib/prng/Mulberry32.js'
-import { SplitMix32 } from '../../node_modules/natlib/prng/SplitMix32.js'
+import { Mulberry32 } from 'natlib/prng/Mulberry32.js'
+import { SplitMix32 } from 'natlib/prng/SplitMix32.js'
 
 const require = createRequire(import.meta.url)
 const nativeMulberry32 = require('./build/Release/nativeMulberry32.node')

@@ -6,7 +6,7 @@
 'use strict'
 
 import { jest } from '@jest/globals'
-import { debounce } from '../../node_modules/natlib/scheduling/debounce.js'
+import { debounce } from 'natlib/scheduling/debounce.js'
 
 jest.useFakeTimers()
 
